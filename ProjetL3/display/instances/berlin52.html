@@ -1,0 +1,90 @@
+<html>
+
+<head>
+	<title>TSP instance - berlin52</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.9/cytoscape.min.js"></script>
+</head>
+
+<style>
+	#cy {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+</style>
+
+<body>
+	<div id="cy"></div>
+	<script>
+		var cy = cytoscape({
+			container: document.getElementById('cy'),
+			style: [
+			{
+				selector: 'node',
+				css: {
+					'content': 'data(id)',
+					'text-valign': 'center',
+					'text-halign': 'center'
+				}
+			}
+			],
+			elements: [
+{ data: { id: '0' }, position : { x: 494, y: 502}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '1' }, position : { x: 21, y: 161}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '2' }, position : { x: 301, y: 655}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '3' }, position : { x: 826, y: 599}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '4' }, position : { x: 739, y: 572}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '5' }, position : { x: 769, y: 577}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '6' }, position : { x: 21, y: 201}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '7' }, position : { x: 459, y: 874}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '8' }, position : { x: 507, y: 1027}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '9' }, position : { x: 568, y: 988}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '10' }, position : { x: 1403, y: 542}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '11' }, position : { x: 1067, y: 507}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '12' }, position : { x: 1281, y: 174}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '13' }, position : { x: 1338, y: 4}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '14' }, position : { x: 739, y: 594}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '15' }, position : { x: 634, y: 323}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '16' }, position : { x: 126, y: 581}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '17' }, position : { x: 362, y: 555}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '18' }, position : { x: 446, y: 765}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '19' }, position : { x: 489, y: 319}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '20' }, position : { x: 262, y: 406}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '21' }, position : { x: 454, y: 511}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '22' }, position : { x: 419, y: 362}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '23' }, position : { x: 730, y: 546}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '24' }, position : { x: 852, y: 507}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '25' }, position : { x: 1062, y: 214}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '26' }, position : { x: 1154, y: 275}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '27' }, position : { x: 1093, y: 349}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '28' }, position : { x: 577, y: 157}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '29' }, position : { x: 358, y: 218}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '30' }, position : { x: 367, y: 485}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '31' }, position : { x: 502, y: 581}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '32' }, position : { x: 1005, y: 1014}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '33' }, position : { x: 612, y: 507}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '34' }, position : { x: 599, y: 520}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '35' }, position : { x: 599, y: 533}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '36' }, position : { x: 673, y: 533}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '37' }, position : { x: 695, y: 564}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '38' }, position : { x: 629, y: 555}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '39' }, position : { x: 664, y: 568}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '40' }, position : { x: 415, y: 839}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '41' }, position : { x: 83, y: 227}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '42' }, position : { x: 765, y: 804}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '43' }, position : { x: 612, y: 437}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '44' }, position : { x: 485, y: 712}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '45' }, position : { x: 725, y: 424}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '46' }, position : { x: 1023, y: 56}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '47' }, position : { x: 725, y: 533}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '48' }, position : { x: 529, y: 546}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '49' }, position : { x: 520, y: 314}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '50' }, position : { x: 1172, y: 634}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '51' }, position : { x: 1521, y: 214}, selectable: false, locked: true, grabbable: false},
+			]
+		});
+		</script>
+	</body>
+	</html>

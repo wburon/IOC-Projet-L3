@@ -1,0 +1,182 @@
+<html>
+
+<head>
+	<title>TSP solution - st70</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.9/cytoscape.min.js"></script>
+</head>
+
+<style>
+	#cy {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+</style>
+
+<body>
+	<div id="cy"></div>
+	<script>
+		var cy = cytoscape({
+			container: document.getElementById('cy'),
+			style: [
+			{
+				selector: 'node',
+				css: {
+					'content': 'data(id)',
+					'text-valign': 'center',
+					'text-halign': 'center'
+				}
+			}
+			],
+			elements: {
+			nodes: [
+{ data: { id: '0' }, position : { x: 1032, y: 1548}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '1' }, position : { x: 1290, y: 629}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '2' }, position : { x: 1112, y: 370}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '3' }, position : { x: 1161, y: 677}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '4' }, position : { x: 774, y: 1080}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '5' }, position : { x: 935, y: 693}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '6' }, position : { x: 1306, y: 548}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '7' }, position : { x: 1274, y: 274}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '8' }, position : { x: 483, y: 370}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '9' }, position : { x: 677, y: 1080}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '10' }, position : { x: 112, y: 1225}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '11' }, position : { x: 467, y: 822}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '12' }, position : { x: 1258, y: 1483}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '13' }, position : { x: 1032, y: 129}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '14' }, position : { x: 1532, y: 919}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '15' }, position : { x: 919, y: 1467}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '16' }, position : { x: 645, y: 564}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '17' }, position : { x: 1096, y: 645}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '18' }, position : { x: 1483, y: 548}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '19' }, position : { x: 1000, y: 16}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '20' }, position : { x: 451, y: 693}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '21' }, position : { x: 1225, y: 1177}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '22' }, position : { x: 1080, y: 1419}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '23' }, position : { x: 1500, y: 870}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '24' }, position : { x: 96, y: 129}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '25' }, position : { x: 1403, y: 290}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '26' }, position : { x: 483, y: 145}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '27' }, position : { x: 1241, y: 209}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '28' }, position : { x: 1258, y: 1516}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '29' }, position : { x: 887, y: 48}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '30' }, position : { x: 1322, y: 1419}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '31' }, position : { x: 1177, y: 451}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '32' }, position : { x: 322, y: 887}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '33' }, position : { x: 435, y: 693}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '34' }, position : { x: 1532, y: 1387}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '35' }, position : { x: 1080, y: 1596}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '36' }, position : { x: 774, y: 1338}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '37' }, position : { x: 1209, y: 1306}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '38' }, position : { x: 129, y: 306}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '39' }, position : { x: 322, y: 290}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '40' }, position : { x: 870, y: 612}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '41' }, position : { x: 1016, y: 580}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '42' }, position : { x: 709, y: 532}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '43' }, position : { x: 838, y: 290}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '44' }, position : { x: 193, y: 209}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '45' }, position : { x: 403, y: 80}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '46' }, position : { x: 935, y: 1370}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '47' }, position : { x: 80, y: 1080}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '48' }, position : { x: 1451, y: 145}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '49' }, position : { x: 661, y: 1225}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '50' }, position : { x: 403, y: 1225}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '51' }, position : { x: 596, y: 1032}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '52' }, position : { x: 903, y: 1016}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '53' }, position : { x: 161, y: 887}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '54' }, position : { x: 1580, y: 112}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '55' }, position : { x: 258, y: 1193}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '56' }, position : { x: 1435, y: 967}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '57' }, position : { x: 774, y: 1322}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '58' }, position : { x: 1306, y: 1225}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '59' }, position : { x: 467, y: 967}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '60' }, position : { x: 274, y: 354}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '61' }, position : { x: 80, y: 725}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '62' }, position : { x: 1274, y: 1129}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '63' }, position : { x: 145, y: 1612}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '64' }, position : { x: 274, y: 1322}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '65' }, position : { x: 1193, y: 1080}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '66' }, position : { x: 161, y: 1096}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '67' }, position : { x: 774, y: 306}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '68' }, position : { x: 1338, y: 1387}, selectable: false, locked: true, grabbable: false},
+{ data: { id: '69' }, position : { x: 1354, y: 1516}, selectable: false, locked: true, grabbable: false},
+			],
+			edges: [
+{ data: { id: '63_36' , weight: 1, source: '63', target: '36' } },
+{ data: { id: '36_57' , weight: 1, source: '36', target: '57' } },
+{ data: { id: '57_49' , weight: 1, source: '57', target: '49' } },
+{ data: { id: '49_51' , weight: 1, source: '49', target: '51' } },
+{ data: { id: '51_9' , weight: 1, source: '51', target: '9' } },
+{ data: { id: '9_4' , weight: 1, source: '9', target: '4' } },
+{ data: { id: '4_52' , weight: 1, source: '4', target: '52' } },
+{ data: { id: '52_46' , weight: 1, source: '52', target: '46' } },
+{ data: { id: '46_15' , weight: 1, source: '46', target: '15' } },
+{ data: { id: '15_22' , weight: 1, source: '15', target: '22' } },
+{ data: { id: '22_0' , weight: 1, source: '22', target: '0' } },
+{ data: { id: '0_35' , weight: 1, source: '0', target: '35' } },
+{ data: { id: '35_28' , weight: 1, source: '35', target: '28' } },
+{ data: { id: '28_12' , weight: 1, source: '28', target: '12' } },
+{ data: { id: '12_69' , weight: 1, source: '12', target: '69' } },
+{ data: { id: '69_34' , weight: 1, source: '69', target: '34' } },
+{ data: { id: '34_30' , weight: 1, source: '34', target: '30' } },
+{ data: { id: '30_68' , weight: 1, source: '30', target: '68' } },
+{ data: { id: '68_37' , weight: 1, source: '68', target: '37' } },
+{ data: { id: '37_58' , weight: 1, source: '37', target: '58' } },
+{ data: { id: '58_21' , weight: 1, source: '58', target: '21' } },
+{ data: { id: '21_65' , weight: 1, source: '21', target: '65' } },
+{ data: { id: '65_62' , weight: 1, source: '65', target: '62' } },
+{ data: { id: '62_56' , weight: 1, source: '62', target: '56' } },
+{ data: { id: '56_14' , weight: 1, source: '56', target: '14' } },
+{ data: { id: '14_23' , weight: 1, source: '14', target: '23' } },
+{ data: { id: '23_18' , weight: 1, source: '23', target: '18' } },
+{ data: { id: '18_54' , weight: 1, source: '18', target: '54' } },
+{ data: { id: '54_48' , weight: 1, source: '54', target: '48' } },
+{ data: { id: '48_25' , weight: 1, source: '48', target: '25' } },
+{ data: { id: '25_7' , weight: 1, source: '25', target: '7' } },
+{ data: { id: '7_27' , weight: 1, source: '7', target: '27' } },
+{ data: { id: '27_2' , weight: 1, source: '27', target: '2' } },
+{ data: { id: '2_31' , weight: 1, source: '2', target: '31' } },
+{ data: { id: '31_6' , weight: 1, source: '31', target: '6' } },
+{ data: { id: '6_1' , weight: 1, source: '6', target: '1' } },
+{ data: { id: '1_3' , weight: 1, source: '1', target: '3' } },
+{ data: { id: '3_17' , weight: 1, source: '3', target: '17' } },
+{ data: { id: '17_41' , weight: 1, source: '17', target: '41' } },
+{ data: { id: '41_5' , weight: 1, source: '41', target: '5' } },
+{ data: { id: '5_40' , weight: 1, source: '5', target: '40' } },
+{ data: { id: '40_16' , weight: 1, source: '40', target: '16' } },
+{ data: { id: '16_42' , weight: 1, source: '16', target: '42' } },
+{ data: { id: '42_67' , weight: 1, source: '42', target: '67' } },
+{ data: { id: '67_43' , weight: 1, source: '67', target: '43' } },
+{ data: { id: '43_13' , weight: 1, source: '43', target: '13' } },
+{ data: { id: '13_19' , weight: 1, source: '13', target: '19' } },
+{ data: { id: '19_29' , weight: 1, source: '19', target: '29' } },
+{ data: { id: '29_8' , weight: 1, source: '29', target: '8' } },
+{ data: { id: '8_26' , weight: 1, source: '8', target: '26' } },
+{ data: { id: '26_45' , weight: 1, source: '26', target: '45' } },
+{ data: { id: '45_44' , weight: 1, source: '45', target: '44' } },
+{ data: { id: '44_24' , weight: 1, source: '44', target: '24' } },
+{ data: { id: '24_38' , weight: 1, source: '24', target: '38' } },
+{ data: { id: '38_60' , weight: 1, source: '38', target: '60' } },
+{ data: { id: '60_39' , weight: 1, source: '60', target: '39' } },
+{ data: { id: '39_20' , weight: 1, source: '39', target: '20' } },
+{ data: { id: '20_33' , weight: 1, source: '20', target: '33' } },
+{ data: { id: '33_11' , weight: 1, source: '33', target: '11' } },
+{ data: { id: '11_59' , weight: 1, source: '11', target: '59' } },
+{ data: { id: '59_32' , weight: 1, source: '59', target: '32' } },
+{ data: { id: '32_61' , weight: 1, source: '32', target: '61' } },
+{ data: { id: '61_53' , weight: 1, source: '61', target: '53' } },
+{ data: { id: '53_66' , weight: 1, source: '53', target: '66' } },
+{ data: { id: '66_47' , weight: 1, source: '66', target: '47' } },
+{ data: { id: '47_10' , weight: 1, source: '47', target: '10' } },
+{ data: { id: '10_55' , weight: 1, source: '10', target: '55' } },
+{ data: { id: '55_50' , weight: 1, source: '55', target: '50' } },
+{ data: { id: '50_64' , weight: 1, source: '50', target: '64' } },
+{ data: { id: '64_63' , weight: 1, source: '64', target: '63' } },
+			]
+		}
+		});
+		</script>
+	</body>
+	</html>
