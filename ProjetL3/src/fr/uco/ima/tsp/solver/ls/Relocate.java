@@ -10,6 +10,8 @@ public class Relocate implements NeighborhoodI {
 	private TSPInstance instance;
 	private int n;
 	private double OC;
+	private int indexIinS;
+	private ArrayList<Integer> listSolutionInit;
 	
 	
 
@@ -20,23 +22,25 @@ public class Relocate implements NeighborhoodI {
 		this.n = this.instance.size();
 		this.OC = Double.MAX_VALUE;
 		
-		ArrayList<Integer> listSolutionInit = getListSolution(s);
+		listSolutionInit = getListSolution(s);
 		ArrayList<Integer> clone;
 		ArrayList<Integer> bestClone = new ArrayList<>();
 		double bestDelta=0;
 		
 		
 		for(int i=0; i<n; i++){
-			int indexIinS = listSolutionInit.indexOf(i);
+			indexIinS = listSolutionInit.indexOf(i);
 			double cout = calculCout(indexIinS, listSolutionInit);
 			clone = (ArrayList<Integer>) listSolutionInit.clone();
 			clone.remove(indexIinS);
 			clone = relocate(i, clone, cout);
-			if(clone != null && this.OC<cout){
+			double delta = cout-this.OC;
+			if(clone != null && this.OC<cout && delta > bestDelta){
 				bestClone = clone;
-				bestDelta = cout-this.OC;
+				bestDelta = delta;
 			}
 		}
+		System.out.println("best delta : "+bestDelta);
 		TSPSolution solution = new TSPSolution(bestClone);
 		solution.setOF(s.getOF()-bestDelta);
 		return solution;
@@ -50,13 +54,22 @@ public class Relocate implements NeighborhoodI {
 	 */
 	private double calculCout(int index, ArrayList<Integer> listSolutionInit) {
 		double cout;
-		if(index > 0 && index < n-1)
+		if(index > 0 && index < listSolutionInit.size()-1)
 			cout =  this.instance.getDistance(listSolutionInit.get(index-1),listSolutionInit.get(index)) + this.instance.getDistance(listSolutionInit.get(index), listSolutionInit.get(index+1));
 		else if(index == 0)
 			cout =  this.instance.getDistance(listSolutionInit.get(this.n-1),listSolutionInit.get(index)) + this.instance.getDistance(listSolutionInit.get(index), listSolutionInit.get(index+1)); 
 		else 
 			cout =  this.instance.getDistance(listSolutionInit.get(index-1),listSolutionInit.get(index)) + this.instance.getDistance(listSolutionInit.get(index), listSolutionInit.get(0));
 		return cout;
+	}
+	
+	private double distanceSiIBouge(int indexI){
+		double distance;
+		if(indexI > 0 && indexI < n)
+			distance = this.instance.getDistance(this.listSolutionInit.get(indexI-1), this.listSolutionInit.get(indexI));
+		else
+			distance = this.instance.getDistance(this.listSolutionInit.get(n-1), this.listSolutionInit.get(0));
+		return distance;
 	}
 
 	/**
@@ -73,6 +86,9 @@ public class Relocate implements NeighborhoodI {
 			test = (ArrayList<Integer>) clone.clone();
 			test.add(j, i);
 			cout = calculCout(j, test);
+			if(this.indexIinS != testMin.indexOf(i)){
+				cout = cout+distanceSiIBouge(this.indexIinS);
+			}
 			if(cout < coutMin){
 				coutMin = cout;
 				testMin = test;
