@@ -32,11 +32,13 @@ public class Relocate implements NeighborhoodI {
 			clone = (ArrayList<Integer>) listSolutionInit.clone();
 			clone.remove(indexIinS);
 			clone = relocate(i, clone, cout);
-			if(clone != null && this.OC<cout){
+			double delta = cout-this.OC;
+			if(clone != null && this.OC<cout && delta > bestDelta){
 				bestClone = clone;
-				bestDelta = cout-this.OC;
+				bestDelta = delta;
 			}
 		}
+		System.out.println("best delta : "+bestDelta);
 		TSPSolution solution = new TSPSolution(bestClone);
 		solution.setOF(s.getOF()-bestDelta);
 		return solution;
