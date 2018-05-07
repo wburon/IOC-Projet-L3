@@ -12,6 +12,7 @@ import fr.uco.ima.tsp.io.TSPSolutionWriter;
 import fr.uco.ima.tsp.io.TSPViewer;
 import fr.uco.ima.tsp.io.TSPViewer.ViewerType;
 import fr.uco.ima.tsp.solver.TSPSolverI;
+import fr.uco.ima.tsp.solver.ls.ClarkandWrightHeuristic;
 import fr.uco.ima.tsp.solver.ls.HeuristicCercle;
 import fr.uco.ima.tsp.solver.ls.HeuristicFarthestInsertionOne;
 import fr.uco.ima.tsp.solver.milp.TSPSolverMILP;
@@ -21,7 +22,7 @@ public class TestHeuristique {
 
 	public static void main(String[] args) {
 		// Construire l'instance
-		TSPInstance instance = TSPInstanceFactory.getInstance(InstanceName.st70);
+		TSPInstance instance = TSPInstanceFactory.getInstance(InstanceName.wi29);
 
 		// Créer l'objet responsable d'écrire les fichiers de visulalisation des
 		// instances et des solutions
@@ -39,7 +40,7 @@ public class TestHeuristique {
 
 		
 		
-		TSPSolverI solverH = new HeuristicFarthestInsertionOne();
+		TSPSolverI solverH = new ClarkandWrightHeuristic();
 		 TSPSolution solution = solverH.solve(instance);
 		 boolean feasible = checker.checkConstraints(solution, instance,
 		 true);

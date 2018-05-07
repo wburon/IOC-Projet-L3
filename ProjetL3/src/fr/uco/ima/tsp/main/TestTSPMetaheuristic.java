@@ -15,6 +15,7 @@ import fr.uco.ima.tsp.solver.ls.Descent1;
 import fr.uco.ima.tsp.solver.ls.ExplorationStrategy;
 import fr.uco.ima.tsp.solver.ls.HeuristicCercle;
 import fr.uco.ima.tsp.solver.ls.NeighborhoodI;
+import fr.uco.ima.tsp.solver.ls.RechercheTabou;
 import fr.uco.ima.tsp.solver.ls.Relocate;
 import fr.uco.ima.tsp.solver.ls.TSPSolverLS;
 import fr.uco.ima.tsp.solver.ls.ThreeOpt;
@@ -43,9 +44,10 @@ public class TestTSPMetaheuristic {
 		// Créer le voisinage
 		NeighborhoodI n = new Relocate();
 		// Créer l'algorithme de descente
-		Descent1 descent = new Descent1(n);
+//		Descent1 descent = new Descent1(n);
+		RechercheTabou tabou = new RechercheTabou(n);
 		// Créer la métaheuristique
-		TSPSolverI solverLS = new TSPSolverLS(descent, new ClarkandWrightHeuristic(),
+		TSPSolverI solverLS = new TSPSolverLS(tabou, new ClarkandWrightHeuristic(),
 				ExplorationStrategy.FIRST_IMPROVEMENT, evaluator);
 		TSPSolution solution = solverLS.solve(instance);
 		boolean feasible = checker.checkConstraints(solution, instance, true);
