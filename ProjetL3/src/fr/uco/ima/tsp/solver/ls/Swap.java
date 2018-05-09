@@ -1,5 +1,7 @@
 package fr.uco.ima.tsp.solver.ls;
 
+import java.util.ArrayList;
+
 import fr.uco.ima.tsp.data.TSPInstance;
 import fr.uco.ima.tsp.data.TSPSolution;
 
@@ -9,6 +11,10 @@ public class Swap implements NeighborhoodI{
 	public TSPSolution explore(TSPInstance instance, TSPSolution s, ExplorationStrategy strategy) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public ArrayList<Integer> BuildSol(int i,int j, TSPSolution s){
+		int posI=s.
 	}
 
 }

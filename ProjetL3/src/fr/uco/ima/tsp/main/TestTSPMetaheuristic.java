@@ -42,12 +42,12 @@ public class TestTSPMetaheuristic {
 
 		// Tester la métaheuristique
 		// Créer le voisinage
-		NeighborhoodI n = new Relocate();
+		NeighborhoodI n = new ThreeOpt();
 		// Créer l'algorithme de descente
 //		Descent1 descent = new Descent1(n);
-		RechercheTabou tabou = new RechercheTabou(n);
+		Descent1 Descent1 = new Descent1(n);
 		// Créer la métaheuristique
-		TSPSolverI solverLS = new TSPSolverLS(tabou, new ClarkandWrightHeuristic(),
+		TSPSolverI solverLS = new TSPSolverLS(Descent1, new ClarkandWrightHeuristic(),
 				ExplorationStrategy.FIRST_IMPROVEMENT, evaluator);
 		TSPSolution solution = solverLS.solve(instance);
 		boolean feasible = checker.checkConstraints(solution, instance, true);
