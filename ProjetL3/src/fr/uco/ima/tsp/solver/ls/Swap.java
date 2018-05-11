@@ -11,9 +11,12 @@ public class Swap implements NeighborhoodI{
 	@Override
 	public TSPSolution explore(TSPInstance instance, TSPSolution s, ExplorationStrategy strategy) {
 
+		TSPSolution solution;
 		int i,j;
 		Random alea = new Random();
 		double deltaMin=Double.MAX_VALUE,delta;
+		int bestI=-1,bestJ=-1;
+		
 			
 		if(strategy.equals(ExplorationStrategy.RANDOM)){
 			i=alea.nextInt();
@@ -22,19 +25,45 @@ public class Swap implements NeighborhoodI{
 		}else{
 			for(i=0; i<s.size(); i++){
 				for(j=0; j<s.size(); j++){
-					delta = getEval(i,j,s,instance);
-					if(delta<0 && strategy.equals(ExplorationStrategy.FIRST_IMPROVEMENT))
-						break;
-				}
+					if(i!=j){
+						delta = getEval(i,j,s,instance);
+						if(delta<deltaMin){
+							deltaMin=delta;
+							bestI=i;
+							bestJ=j;
+						}
+					}
+				}if(deltaMin<0 && strategy.equals(ExplorationStrategy.FIRST_IMPROVEMENT))
+					break;
+				
 			}
 		}
-			
 		
-		return null;
+		if(strategy.equals(ExplorationStrategy.BEST))
+			solution = BuildSol(bestI, bestJ, s, deltaMin);
+		else{
+			if(deltaMin<0)
+				solution = BuildSol(bestI,bestJ,s,deltaMin);
+			else
+				solution = s;
+		}
+		
+		
+		return solution;
 	}
 	
-	public ArrayList<Integer> BuildSol(int i,int j, TSPSolution s){
+	public TSPSolution BuildSol(int i,int j, TSPSolution s, double delta){
+		ArrayList<Integer> newPermutation = new ArrayList<>();
 		
+		if(i<j)
+			newPermutation = swap(s,i,j);
+		else
+			newPermutation = swap(s,j,i);
+		
+		TSPSolution newSolution = new TSPSolution(newPermutation);
+		double newOf = s.getOF()+delta;
+		newSolution.setOF(newOf);
+		return newSolution;
 	}
 	
 	public double getEval(int i, int j, TSPSolution s, TSPInstance instance){
@@ -44,6 +73,8 @@ public class Swap implements NeighborhoodI{
 		int jN1;
 		int jN2 = s.get(j);
 		int jN3;
+		
+		double saving, cout;
 		
 		if(i==0){
 			iN1=s.get(s.size()-1);
@@ -67,13 +98,32 @@ public class Swap implements NeighborhoodI{
 			jN3=s.get(j+1);
 		}
 		
-		double saving = instance.getDistance(iN1, iN2)+instance.getDistance(iN2, iN3)
-			+instance.getDistance(jN1, jN2)+instance.getDistance(jN2, jN3);
-		double cout = instance.getDistance(iN1, jN2)+instance.getDistance(jN2, iN3)
-			+instance.getDistance(jN1, iN2)+instance.getDistance(iN2, jN3);
-		
+		if(j==i+1 || (j==0 && i==s.size()-1)){
+			saving = instance.getDistance(iN1, iN2)+instance.getDistance(iN2, iN3)+instance.getDistance(jN2, jN3);
+			cout=instance.getDistance(iN1, jN2)+instance.getDistance(jN2, iN2)+instance.getDistance(iN2, jN3);
+		}else if(j==i-1 || (j==s.size()-1 && i==0)){
+			saving = instance.getDistance(iN1, iN2)+instance.getDistance(iN2, iN3)+instance.getDistance(jN1, jN2);
+			cout = instance.getDistance(jN2, iN3)+instance.getDistance(jN1, iN2)+instance.getDistance(iN2, jN2);
+		}else{
+			saving = instance.getDistance(iN1, iN2)+instance.getDistance(iN2, iN3)+instance.getDistance(jN1, jN2)+instance.getDistance(jN2, jN3);
+			cout = instance.getDistance(iN1, jN2)+instance.getDistance(jN2, iN3)+instance.getDistance(jN1, iN2)+instance.getDistance(iN2, jN3);
+		}
 		return cout-saving;
 		
+	}
+	
+	private ArrayList<Integer> swap(TSPSolution s, int i, int j){
+		ArrayList<Integer> list = new ArrayList<>();
+		int l;
+		for(l=0; l<i; l++)
+			list.add(s.get(l));
+		list.add(s.get(j));
+		for(l=i+1; l<j; l++)
+			list.add(s.get(l));
+		list.add(s.get(i));
+		for(l=j+1; l<s.size(); l++)
+			list.add(s.get(l));
+		return list;
 	}
 
 }

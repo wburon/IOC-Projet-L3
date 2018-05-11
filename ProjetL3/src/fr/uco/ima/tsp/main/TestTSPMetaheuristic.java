@@ -17,6 +17,7 @@ import fr.uco.ima.tsp.solver.ls.HeuristicCercle;
 import fr.uco.ima.tsp.solver.ls.NeighborhoodI;
 import fr.uco.ima.tsp.solver.ls.RechercheTabou;
 import fr.uco.ima.tsp.solver.ls.Relocate;
+import fr.uco.ima.tsp.solver.ls.Swap;
 import fr.uco.ima.tsp.solver.ls.TSPSolverLS;
 import fr.uco.ima.tsp.solver.ls.ThreeOpt;
 
@@ -24,7 +25,7 @@ public class TestTSPMetaheuristic {
 
 	public static void main(String[] args) {
 		// Construire l'instance
-		TSPInstance instance = TSPInstanceFactory.getInstance(InstanceName.wi29);
+		TSPInstance instance = TSPInstanceFactory.getInstance(InstanceName.pr439);
 
 		// Créer l'objet responsable d'écrire les fichiers de visulalisation des
 		// instances et des solutions
@@ -42,12 +43,12 @@ public class TestTSPMetaheuristic {
 
 		// Tester la métaheuristique
 		// Créer le voisinage
-		NeighborhoodI n = new ThreeOpt();
+		NeighborhoodI n = new Relocate();
 		// Créer l'algorithme de descente
 //		Descent1 descent = new Descent1(n);
-		RechercheTabou RechercheTabou = new RechercheTabou(n);
+		RechercheTabou RT= new RechercheTabou(n);
 		// Créer la métaheuristique
-		TSPSolverI solverLS = new TSPSolverLS(RechercheTabou, new ClarkandWrightHeuristic(),
+		TSPSolverI solverLS = new TSPSolverLS(RT, new ClarkandWrightHeuristic(),
 				ExplorationStrategy.FIRST_IMPROVEMENT, evaluator);
 		TSPSolution solution = solverLS.solve(instance);
 		boolean feasible = checker.checkConstraints(solution, instance, true);
