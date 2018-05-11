@@ -52,6 +52,15 @@ public class Swap implements NeighborhoodI{
 		return solution;
 	}
 	
+	/**
+	 * Méthode permettant de construire la liste de sommets pour créer un nouvel 
+	 * objet TSPSolution
+	 * @param i 1er sommet sélectionné pour effectuer la permutation
+	 * @param j 2eme sommet sélectionné pour effectuer la permutation
+	 * @param s la solution initiale à partir de laquelle on construit une nouvelle solution
+	 * @param delta la différence de coût entre la solution s et la nouvelle
+	 * @return newSolution
+	 */
 	public TSPSolution BuildSol(int i,int j, TSPSolution s, double delta){
 		ArrayList<Integer> newPermutation = new ArrayList<>();
 		
@@ -66,6 +75,14 @@ public class Swap implements NeighborhoodI{
 		return newSolution;
 	}
 	
+	/**
+	 * Méthode permettant d'évaluer le coût en cas de permutation entre i et j
+	 * @param i 1er sommet sélectionné pour effectuer la permutation
+	 * @param j 2eme sommet sélectionné pour effectuer la permutation
+	 * @param s solution sur laquelle on calcul le cout
+	 * @param instance objet TSPInstance qui nous permet d'avoir la distance entre les sommets
+	 * @return delta=cout-saving la différence entre le nouveau coût et l'ancien
+	 */
 	public double getEval(int i, int j, TSPSolution s, TSPInstance instance){
 		int iN1;
 		int iN2 = s.get(i);
@@ -112,6 +129,13 @@ public class Swap implements NeighborhoodI{
 		
 	}
 	
+	/**
+	 * Méthode permutant le Ième et Jème sommet d'une solution s avec i<j
+	 * @param s 
+	 * @param i
+	 * @param j
+	 * @return une liste qu'on utilisera lors de la création de la solution dans BuildSol
+	 */
 	private ArrayList<Integer> swap(TSPSolution s, int i, int j){
 		ArrayList<Integer> list = new ArrayList<>();
 		int l;
