@@ -29,7 +29,7 @@ public class HeuristicCercle implements SolutionGeneratorI, TSPSolverI {
 		double[] tabAngle = getTabAngle();
 		listParcours = triListe(tabAngle);
 
-		return generateSolution(instance);
+		return buildSolution(instance);
 	}
 
 	/**
@@ -184,6 +184,10 @@ public class HeuristicCercle implements SolutionGeneratorI, TSPSolverI {
 
 	@Override
 	public TSPSolution generateSolution(TSPInstance instance) {
+		return this.solve(instance);
+	}
+	
+	private TSPSolution buildSolution(TSPInstance instance2) {
 		ArrayList<Integer> solution = new ArrayList<Integer>();
 		solution.add(po);
 //		solution.add(p3);

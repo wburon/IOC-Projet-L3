@@ -31,14 +31,14 @@ public class Relocate implements NeighborhoodI {
 			clone.remove(indexIinS);
 			clone = relocate(i, clone, cout);
 
-			if (strategy.equals(ExplorationStrategy.FIRST_IMPROVEMENT))
-				break;
-			else {
-				if (this.OC > bestDelta) {
-					bestClone = clone;
-					bestDelta = this.OC;
-				}
+			if (this.OC > bestDelta) {
+
+				bestClone = clone;
+				bestDelta = this.OC;
+				if (strategy.equals(ExplorationStrategy.FIRST_IMPROVEMENT))
+					break;
 			}
+
 		}
 		TSPSolution solution = new TSPSolution(bestClone);
 		solution.setOF(s.getOF() - bestDelta);
@@ -66,6 +66,12 @@ public class Relocate implements NeighborhoodI {
 		return cout;
 	}
 
+	/**
+	 * Calcul la distance entre le predecesseur de i et son successeur
+	 * 
+	 * @param indexI
+	 * @return la distance
+	 */
 	private double distanceSiIBouge(int indexI) {
 		double distance;
 		if (indexI > 0 && indexI < n - 1)

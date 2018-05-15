@@ -39,9 +39,10 @@ public class HeuristicFarthestInsertionOne implements SolutionGeneratorI, TSPSol
 		ListeArcGraphe.add(new Arc(dmax[0], dmax[1]));
 		ParcoursGraphe();
 
-		return generateSolution(instance);
+		return buildSolution(instance);
 	}
 
+	
 	/**
 	 * Méthode parcourant le graphe à la recherche de sommets à insérer
 	 * 
@@ -247,6 +248,10 @@ public class HeuristicFarthestInsertionOne implements SolutionGeneratorI, TSPSol
 
 	@Override
 	public TSPSolution generateSolution(TSPInstance instance) {
+		return this.solve(instance);
+	}
+	
+	private TSPSolution buildSolution(TSPInstance instance2) {
 		ArrayList<Integer> solution = new ArrayList<>();
 		int i = ListeArcGraphe.get(0).getI();
 		solution.add(i);
@@ -259,6 +264,7 @@ public class HeuristicFarthestInsertionOne implements SolutionGeneratorI, TSPSol
 
 		return new TSPSolution(solution);
 	}
+
 
 	private Integer findJ(int k) {
 		for (Arc arc : ListeArcGraphe) {
