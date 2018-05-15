@@ -31,9 +31,13 @@ public class Relocate implements NeighborhoodI {
 			clone.remove(indexIinS);
 			clone = relocate(i, clone, cout);
 
-			if (this.OC > bestDelta) {
-				bestClone = clone;
-				bestDelta = this.OC;
+			if (strategy.equals(ExplorationStrategy.FIRST_IMPROVEMENT))
+				break;
+			else {
+				if (this.OC > bestDelta) {
+					bestClone = clone;
+					bestDelta = this.OC;
+				}
 			}
 		}
 		TSPSolution solution = new TSPSolution(bestClone);
@@ -64,13 +68,14 @@ public class Relocate implements NeighborhoodI {
 
 	private double distanceSiIBouge(int indexI) {
 		double distance;
-		if (indexI > 0 && indexI < n-1)
+		if (indexI > 0 && indexI < n - 1)
 			distance = this.instance.getDistance(this.listSolutionInit.get(indexI - 1),
-					this.listSolutionInit.get(indexI+1));
+					this.listSolutionInit.get(indexI + 1));
 		else if (indexI == 0)
-			distance = this.instance.getDistance(this.listSolutionInit.get(n - 1), this.listSolutionInit.get(indexI+1));
-		else 
-			distance = this.instance.getDistance(this.listSolutionInit.get(indexI-1), this.listSolutionInit.get(1));
+			distance = this.instance.getDistance(this.listSolutionInit.get(n - 1),
+					this.listSolutionInit.get(indexI + 1));
+		else
+			distance = this.instance.getDistance(this.listSolutionInit.get(indexI - 1), this.listSolutionInit.get(1));
 
 		return distance;
 	}
@@ -98,23 +103,21 @@ public class Relocate implements NeighborhoodI {
 				double delta;
 				if (j > 0 && j < n - 1)
 					delta = c + instance.getDistance(test.get(j - 1), test.get(j + 1)) - cout;
-				else if(j == 0)
-					delta = c + instance.getDistance(test.get(n-1), test.get(j+1)) - cout;
-				else 
-					delta = c + instance.getDistance(test.get(j-1), test.get(0)) - cout;
+				else if (j == 0)
+					delta = c + instance.getDistance(test.get(n - 1), test.get(j + 1)) - cout;
+				else
+					delta = c + instance.getDistance(test.get(j - 1), test.get(0)) - cout;
 
 				if (delta > deltaMax) {
 					deltaMax = delta;
 					testMin = test;
 				}
-				
+
 			}
-			
+
 		}
 		this.OC = deltaMax;
 		return testMin;
-
-		
 
 	}
 
