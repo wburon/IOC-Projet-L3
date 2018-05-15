@@ -36,7 +36,7 @@ public class TestTSP {
 
 		TSPSolverMILP solver;
 		try {
-			solver = new TSPSolverMILP(true, 60);
+			solver = new TSPSolverMILP(true, 180);
 			TSPSolution solution = solver.solve(instance);
 			boolean feasible = checker.checkConstraints(solution, instance, true);
 			int evaluation = evaluator.getEvaluation(solution, instance);
